@@ -1,0 +1,12 @@
+# External
+159.89.214.200
+
+# Internal
+10.245.69.255
+
+# Peer-id
+12D3KooWL8z3KARAYJcmExhDsGwKbjChKeGaJpFPENyADdxmEHzw
+
+# Multi Addresses
+/ip4/10.99.1.145/tcp/2121/p2p/12D3KooWL8z3KARAYJcmExhDsGwKbjChKeGaJpFPENyADdxmEHzw
+/ip6/::1/tcp/2121/p2p/12D3KooWL8z3KARAYJcmExhDsGwKbjChKeGaJpFPENyADdxmEHzw
