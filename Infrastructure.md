@@ -1,5 +1,4 @@
 # Infrastructure Plan
----
 
 ## Repos
 
@@ -19,13 +18,11 @@ Library imported by `celestia-appd`.
 
 TBD
 
----
 ## Continuous Integration
 
 Build and test on every PR merged to `main` branch of all repositories.  
 Runs unit tests and in-memory binary scoped integration tests.
 
----
 ## Continuous Deployment
 
 ### Release Candidate 0 (RC0)
@@ -46,7 +43,7 @@ A PR is automatically created every 24 hours. Upon approval and merging the clus
 
 The chain state is preserved between updates.
 
----
+
 ## Kubernetes Clusters
 
 We propose creating 3 distinct kubernetes clusters: Release Candidate 0 (RC0), Release Candidate 1 (RC1), and Devnet. Promotion of deployments only goes in one direction: `RC0 -> RC1 -> Devnet`.
