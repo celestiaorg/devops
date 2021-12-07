@@ -1,13 +1,29 @@
-FROM golang:latest
+FROM alpine
 
-WORKDIR "/go/celestia-node"
-COPY setup0.sh setup0.sh
-COPY bootnode0.sh bootnode0.sh
-COPY nodekey0 nodekey0
-COPY boot-config0.toml boot-config0.toml
+# Because Alpine
+RUN mkdir /lib64 && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2
+RUN apk update && \
+    apk --no-cache add bash
 
-RUN chmod +x /go/celestia-node/setup0.sh
-RUN chmod +x /go/celestia-node/bootnode0.sh
+ENV GENESIS_HASH A9272DAD1BEBEF104EBDBF071E39789E21C0650AF5B76A7062213B772B6B925E
+ENV APP /celestia-full
+WORKDIR $APP
 
-RUN /go/celestia-node/setup0.sh
-CMD /go/celestia-node/bootnode0.sh
+# Copy in the binary
+COPY celestia ${APP}/celestia
+
+RUN [ "/bin/bash", "-c", "exec ./celestia \
+    full --repo.path ${APP} init" ]
+
+COPY nodekey0 ${APP}/keys/OAZHALLLMV4Q
+RUN chmod 0600 ${APP}/keys/OAZHALLLMV4Q
+
+# Replace config
+COPY boot-config0.toml ${APP}/config.toml
+
+# This allows us to always set the --home directory using an env 
+# var while still capturing all argumenmts passed at runtime
+ENTRYPOINT [ "/bin/bash", "-c", "sleep 5 && \ 
+            exec ./celestia full --repo.path ${APP} \
+            \"${@}\"", "--" ]
+CMD ["--help"]
