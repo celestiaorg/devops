@@ -1,13 +1,12 @@
-# Deactivated as this is solved with GitHub Projects workflow
 name: Automation on issue and PR creation
 
-on: {}
-  # issues:
-  #   types:
-  #     - opened
-  # pull_request:
-  #   types:
-  #     - opened
+on:
+  issues:
+    types:
+      - opened
+  pull_request:
+    types:
+      - opened
 
 jobs:
   add-to-project:
