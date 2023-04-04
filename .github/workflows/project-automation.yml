@@ -12,8 +12,6 @@ jobs:
   add-to-project:
     name: Add issue to project
     runs-on: ubuntu-latest
-    permissions:
-      issues: write
     steps:
       - uses: actions/add-to-project@v0.4.1
         with:
