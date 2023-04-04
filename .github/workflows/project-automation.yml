@@ -15,12 +15,10 @@ jobs:
     permissions:
       issues: write
     steps:
-      # CLI also workds with PR
-      - run: gh issue edit $ISSUE --add-project "$PROJECT"
-        env:
-          GITHUB_TOKEN: ${{ secrets.ADD_TO_PROJECT_PAT }}
-          ISSUE: ${{ github.event.issue.html_url }}
-          PROJECT: "Celestia DevOps/Testing"
+      - uses: actions/add-to-project@v0.4.1
+        with:
+          project-url: https://github.com/orgs/celestiaorg/projects/27
+          github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}}
   assign:
     name: Assign issue to creator
     runs-on: ubuntu-latest
