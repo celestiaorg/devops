@@ -14,6 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       issues: write
+      repository-projects: write
     steps:
       # CLI also workds with PR
       - run: gh issue edit $ISSUE --add-project "$PROJECT"
