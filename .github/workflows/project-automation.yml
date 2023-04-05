@@ -4,7 +4,9 @@ on:
   issues:
     types:
       - opened
-  pull_request:
+  # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#pull_request_target
+  # About security concerns: https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
+  pull_request_target:
     types:
       - opened
 
