@@ -24,13 +24,18 @@ jobs:
         run: |
           echo "ISSUE=${{ github.event.pull_request.html_url }}" >> $GITHUB_ENV
           echo "CREATOR=${{ github.event.pull_request.user.login }}" >> $GITHUB_ENV
-      - name: Add issue to project
+      - name: Add issue/PR to project
         uses: actions/add-to-project@v0.4.1
         with:
           project-url: https://github.com/orgs/celestiaorg/projects/27
           github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
-      - name: Assign issue to creator
-        # CLI also workds with PR
+      - name: Assign issue to creator (issue)
+        if: ${{ github.event.issue }}
         run: gh issue edit ${{ env.ISSUE }} --add-assignee ${{ env.CREATOR }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Assign issue to creator (PR)
+        if: ${{ github.event.pull_request }}
+        run: gh pr edit ${{ env.ISSUE }} --add-assignee ${{ env.CREATOR }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
