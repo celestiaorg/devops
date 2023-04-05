@@ -13,6 +13,9 @@ on:
 jobs:
   project-automation:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
     steps:
       - name: Set issue url and creator login
         if: ${{ github.event.issue }}
