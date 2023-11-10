@@ -1,4 +1,3 @@
 # devops
 
-This is a management repository for the devops team
-
+This repository holds the issues for the DevOps team.
