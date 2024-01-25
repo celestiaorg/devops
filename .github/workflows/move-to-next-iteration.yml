@@ -1,4 +1,4 @@
-name: DevOps Project Automation
+name: Move To Next Iteration
 
 on:
   workflow_dispatch:
