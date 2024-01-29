@@ -1,0 +1,31 @@
+name: GitHub Actions 2 PagerDuty
+
+on:
+  workflow_dispatch:
+  issues:
+    types:
+      - opened
+      - labeled
+
+jobs:
+  check-label:
+    if: github.event.label.name == 'pagerduty'
+    runs-on: ubuntu-latest
+    outputs:
+      issue-labeled: ${{ steps.set-output.outputs.issue-labeled }}
+    steps:
+      - name: Set output if label is 'pagerduty'
+        id: set-output
+        run: echo "::set-output name=issue-labeled::true"
+
+  ga-2-pd:
+    name: GitHub Actions To PagerDuty
+    needs: check-label
+    if: needs.check-label.outputs.issue-labeled == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send PagerDuty alert on failure
+        uses: award28/action-pagerduty-alert@0.4.0
+        with:
+          pagerduty-integration-key: '${{ secrets.PAGERDUTY_INTEGRATION_KEY }}'
+          pagerduty-dedup-key: github_workflow_failed
