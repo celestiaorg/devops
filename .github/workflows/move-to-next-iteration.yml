@@ -18,6 +18,6 @@ jobs:
         number: 27
         token: ${{ secrets.ADD_TO_PROJECT_PAT }}
         iteration-field: "Weekly-Sprint"
-        iteration: previous
+        iteration: last
         new-iteration: current
         excluded-statuses: "Done"
