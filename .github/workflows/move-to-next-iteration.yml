@@ -17,7 +17,7 @@ jobs:
         owner: celestiaorg
         number: 27
         token: ${{ secrets.ADD_TO_PROJECT_PAT }}
-        iteration-field: Iteration
+        iteration-field: "Weekly-Sprint"
         iteration: last
         new-iteration: current
         excluded-statuses: "Done"
