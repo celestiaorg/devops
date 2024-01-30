@@ -9,12 +9,12 @@ on:
 
 jobs:
   check-label:
-    if: github.event.label.name == 'pagerduty'
+    if: github.event.label.name == 'pd'
     runs-on: ubuntu-latest
     outputs:
       issue-labeled: ${{ steps.set-output.outputs.issue-labeled }}
     steps:
-      - name: Set output if label is 'pagerduty'
+      - name: Set output if label is 'pd'
         id: set-output
         run: echo "::set-output name=issue-labeled::true"
 
