@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   schedule:
     # Runs "at 05:00, only on Monday" (see https://crontab.guru)
-    - cron: '0 5 * * 1'
+    - cron: '0 5 * * 0'
 
 jobs:
   move-to-next-iteration:
@@ -17,7 +17,7 @@ jobs:
         owner: celestiaorg
         number: 27
         token: ${{ secrets.ADD_TO_PROJECT_PAT }}
-        iteration-field: "Weekly-Sprint"
-        iteration: last
-        new-iteration: current
+        iteration-field: "Weekly-Sprint - 2024 -"
+        iteration: current
+        new-iteration: next
         excluded-statuses: "Done"
