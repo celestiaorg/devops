@@ -13,9 +13,9 @@ jobs:
     outputs:
       issue-labeled: ${{ steps.set-output.outputs.issue-labeled }}
     steps:
-      - name: Check if the issue has the 'pagerduty' label
+      - name: Check if the issue has the 'incident' label
         id: set-output
-        run: echo "::set-output name=issue-labeled::${{ contains(github.event.issue.labels.*.name, 'pagerduty') }}"
+        run: echo "::set-output name=issue-labeled::${{ contains(github.event.issue.labels.*.name, 'incident') }}"
 
   ga-2-pd:
     name: GitHub Actions To PagerDuty
